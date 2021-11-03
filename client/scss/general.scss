@@ -1,0 +1,55 @@
+*,
+:before,
+:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  // background: linear-gradient(320deg, rgba(152, 251, 152, 1) 75%, rgba(110, 246, 110, 1) 100%);
+  background-color: rgb(85, 215, 85);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+  #GoMenu {
+    font-size: 3em;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 2.5%;
+    transform: translateY(-50%);
+  }
+
+  #GoMenu:hover {
+    transition: transform 0.05s;
+    transform: translateY(-50%) scale(1.1125);
+  }
+
+  height: 6.125em;
+
+  background-color: white;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  box-shadow: 0 0 1em rgba(100, 100, 100, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 2em;
+    margin-right: 1em;
+  }
+
+  h1 {
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+}

@@ -2,7 +2,7 @@
 import os
 from flask import Flask, jsonify, request, url_for, redirect
 from flask_cors import CORS, cross_origin
-from controllers import altaPaciente, altaTurno, auth, buscarTurnoSegunDni, listarPacientes, listarTurnos, modificarPaciente, testing
+from controllers import altaPaciente, altaTurno, auth, buscarTurnoSegunDni, listarPacientes, listarTurnos, modificarPaciente, agregarTurno, agregarPaciente
 
 # Inicializaciones
 os.system('cls')
@@ -13,66 +13,98 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # Rutas
 @app.route('/', methods=["GET"])
 @cross_origin()
-def index():
+def RouteIndex():
     return "Bienvenido!"
 
 # Función Log-In
-
 @app.route('/login', methods = ['POST'])
+@cross_origin()
 def login():
     rq = request.get_json()
-    return auth.autenticar(rq['username'], rq['password'])
+    return jsonify(auth.autenticar(rq['username'], rq['password']))
 
 # ROUTE MENU
-@app.route('/menu/altaPaciente', methods = ['POST', 'GET'])
-def bajaPaciente():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true':
-        rq = request.get_json()
+@app.route('/altaPaciente', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteAltaPaciente():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
         return altaPaciente.altaPaciente(rq['id'])
-    return False
+    return jsonify(False)
     
-@app.route('/menu/altaTurno', methods = ['POST', 'GET'])
-def altaTurno():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true': 
-        return "hola"
-    return False
+@app.route('/altaTurno', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteAltaTurno():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return altaTurno.altaTurno(rq['id'])
+    return jsonify(False)
 
-@app.route('/menu/modificarPaciente', methods = ['POST', 'GET'])
-def modificarPaciente():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true': 
-        return "hola"
-    return False
+@app.route('/modificarPaciente', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteModificarPaciente():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return modificarPaciente.modificarPaciente(rq['dni'], rq['nombre'], rq['apellido'], rq['edad'])
+        # return editarPaciente(id)
+    return jsonify(False)
 
-@app.route('/menu/listarTurnos', methods = ['POST', 'GET'])
-def listarTurnos():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true': 
-        return True
-    return False
+@app.route('/obtenerPaciente', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteObtenerPaciente():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return modificarPaciente.recibirInformacion(rq['dni'])
+    return jsonify(False)
 
-@app.route('/menu/listarPacientes', methods = ['POST', 'GET'])
-def listarPacientes():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true':
+@app.route('/listarTurnos', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteListarTurnos():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True: 
+        return listarTurnos.listadoTurnos()
+    return jsonify(False)
+
+@app.route('/listarPacientes', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteListarPacientes():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
         return listarPacientes.listadoPacientes()
-    return False
+    return jsonify(False)
 
-@app.route('/menu/buscarTurnoSegunDni', methods = ['POST', 'GET'])
-def buscarTurnoSegunDni():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true': 
-        return "hola"
-    return False
+@app.route('/buscarTurnoSegunDni', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteBuscarTurnoSegunDni():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return buscarTurnoSegunDni.buscarTurno(rq['dni'])
+    return jsonify(False)
 
-@app.route('/menu/testing', methods = ['POST', 'GET'])
-def testing():
-    validado = auth.autenticar(request.form['username'], request.form['password'])
-    if validado == 'true': 
-        return "hola"
-    return False
+@app.route('/agregarPaciente', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteAgregarPaciente():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True: 
+        return agregarPaciente.addPaciente(rq['nombre'], rq['apellido'], rq['edad'], rq['dni'])
+    return jsonify(False)
+
+@app.route('/agregarTurno', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteAgregarTurno():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return agregarTurno.addTurno(rq['paciente'], rq['fecha'], rq['hora'])
+    return jsonify(False)
 
 # API init
 if __name__ == "__main__":

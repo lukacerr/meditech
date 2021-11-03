@@ -1,0 +1,77 @@
+#signOut {
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  left: 1%;
+  top: 1%;
+  z-index: 2;
+
+  i {
+    rotate: 180deg;
+    font-size: 5em;
+  }
+}
+
+#welcome {
+  position: absolute;
+  right: 1.5%;
+  top: 3.25%;
+
+  color: white;
+  font-size: 1.5em;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+#signOut:hover {
+  transition: transform 0.05s;
+  transform: scale(1.05);
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  padding: 5% 10%;
+  height: 100vh;
+
+  article {
+    flex-basis: 33%;
+    max-width: 25%;
+
+    border-radius: 10px;
+
+    margin: 1.75% 2.5%;
+    padding: 5%;
+
+    background-color: white;
+    border: 1px solid rgba(100, 100, 100, 0.5);
+    box-shadow: 0 0 1em rgba(100, 100, 100, 0.5);
+    cursor: pointer;
+
+    display: flex;
+    // justify-content: stretch;
+    align-items: center;
+    flex-direction: column;
+
+    i {
+      font-size: 5em;
+      margin-bottom: 12.5%;
+    }
+
+    h2 {
+      letter-spacing: 1px;
+      font-size: 1.25em;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+  }
+
+  article:hover {
+    transition: all 0.025s !important;
+    transform: scale(1.025) !important;
+  }
+}
