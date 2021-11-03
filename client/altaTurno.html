@@ -14,36 +14,32 @@
 
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/general.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <title>Meditech - Login</title>
+    <link rel="stylesheet" href="css/altaTurno.css" />
+    <title>Meditech - Alta de Turnos</title>
   </head>
   <body>
-    <header class="title" style="position: fixed; width: 100%">
-      <i class="fas fa-briefcase-medical"></i>
-      <h1>MEDITECH</h1>
+    <header class="title">
+      <i class="fas fa-arrow-left" id="GoMenu"></i>
+      <i class="fas fa-file-signature"></i>
+      <h1>ALTA DE TURNOS</h1>
     </header>
 
-    <section id="main" data-aos="fade-down">
-      <form action="" method="post">
+    <section data-aos="fade-up">
+      <div class="search">
         <div>
-          <i class="fas fa-user"><span>Nombre de usuario</span></i>
-          <input type="text" required />
+          <h2>Ingrese ID de turno:</h2>
+          <input type="text" id="inputId" />
         </div>
-
-        <div>
-          <i class="fas fa-key"><span>Contraseña</span></i>
-          <input type="password" required />
-        </div>
-
-        <button type="submit">Ingresar</button>
-        <span id="errMessage"></span>
-      </form>
+        <button id="btnSearch">Borrar turno</button>
+      </div>
+      <span id="sucMessage">El turno se ha borrado satisfactoriamente.</span>
+      <span id="errMessage">No se ha encontrado el turno.</span>
     </section>
 
     <script src="https://kit.fontawesome.com/d6d2e5bf69.js" crossorigin="anonymous"></script>
     <script src="js/aos.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/general.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/altaTurno.js"></script>
   </body>
 </html>

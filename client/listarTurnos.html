@@ -14,36 +14,32 @@
 
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/general.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <title>Meditech - Login</title>
+    <link rel="stylesheet" href="css/listarTurnos.css" />
+    <title>Meditech - Listar Turnos</title>
   </head>
   <body>
-    <header class="title" style="position: fixed; width: 100%">
-      <i class="fas fa-briefcase-medical"></i>
-      <h1>MEDITECH</h1>
+    <header class="title">
+      <i class="fas fa-arrow-left" id="GoMenu"></i>
+      <i class="fas fa-list"></i>
+      <h1>LISTAR TURNOS</h1>
     </header>
 
-    <section id="main" data-aos="fade-down">
-      <form action="" method="post">
-        <div>
-          <i class="fas fa-user"><span>Nombre de usuario</span></i>
-          <input type="text" required />
-        </div>
-
-        <div>
-          <i class="fas fa-key"><span>Contraseña</span></i>
-          <input type="password" required />
-        </div>
-
-        <button type="submit">Ingresar</button>
-        <span id="errMessage"></span>
-      </form>
+    <section data-aos="fade-up">
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+        </thead>
+        <tbody></tbody>
+      </table>
     </section>
 
     <script src="https://kit.fontawesome.com/d6d2e5bf69.js" crossorigin="anonymous"></script>
     <script src="js/aos.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/general.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/listarTurnos.js"></script>
   </body>
 </html>
