@@ -1,13 +1,6 @@
-<<<<<<< .mine
 # Meditech
 
-=======
-Formato de Usuarios:
-ID, Username, Password
->>>>>>> .theirs
-
-<<<<<<< .mine
-Luka Cerrutti & Francisco Ezequiel González
+Luka Cerrutti & Francisco Ezequiel Gonzalez
 
 ### Lenguajes y Frameworks utlizados:
 
@@ -19,13 +12,13 @@ Luka Cerrutti & Francisco Ezequiel González
 ### Herramientas utilizadas
 
 - Visual Studio Code
-- Live Share (extensión de VSC)
+- Live Share (extension de VSC)
 - Firefox (debugger web)
 - GIT, GitHub & Tortoise (GIT GUI)
 
 ### Formato de Usuarios:
 
-> ID, Username, Contraseña
+> ID, Username, Password
 
 ### Formato de Pacientes:
 
@@ -34,32 +27,3 @@ Luka Cerrutti & Francisco Ezequiel González
 ### Formato de Turnos:
 
 > ID, DniPaciente (fk de pacientes), Fecha, Horario
-=======
-Formato de Pacientes:
-ID, Nombre, Apellido, Edad, Dni
-
-Lenguajes, herramientas y frameworks utlizados:
-Python, Flask, HTML, CSS, JS, SASS (SCSS), Git
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
