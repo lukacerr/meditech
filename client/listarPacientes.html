@@ -18,7 +18,7 @@
     <title>Meditech - Listar Pacientes</title>
   </head>
   <body>
-    <header class="title">
+    <header class="title" data-aos="fade-down">
       <i class="fas fa-arrow-left" id="GoMenu"></i>
       <i class="fas fa-book-medical"></i>
       <h1>LISTAR PACIENTES</h1>
@@ -35,6 +35,23 @@
         </thead>
         <tbody></tbody>
       </table>
+    </section>
+
+    <section style="display: grid" data-aos="fade-up">
+      <div class="add">
+        <div>
+          <h2>Agregar paciente:</h2>
+          <input type="text" id="inputDni" placeholder="Documento..." />
+          <input type="text" id="inputNombre" placeholder="Nombre/s..." />
+          <input type="text" id="inputApellido" placeholder="Apellido/s..." />
+          <input type="number" id="inputEdad" placeholder="Edad..." />
+        </div>
+        <button id="btnAdd">Agregar</button>
+      </div>
+      <span id="sucMessage">El paciente se ha agregado satisfactoriamente.</span>
+      <span id="errMessage"
+        >Error de validación o desconocido. Revise los campos y vuelva a intentarlo.</span
+      >
     </section>
 
     <script src="https://kit.fontawesome.com/d6d2e5bf69.js" crossorigin="anonymous"></script>

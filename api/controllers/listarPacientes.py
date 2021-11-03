@@ -1,14 +1,16 @@
 import os
 from flask import jsonify
 
-os.system('cls')
-db_path = os.path.dirname(os.path.abspath(__file__))
+def pacienteRecursivo(file, listaPacientes):
+    linea = file.readline()
+    if linea == "": return "EMPTY_FILE"
+    
+    listaPacientes.append(linea.replace(";",""))
+    pacienteRecursivo(file, listaPacientes)
+     
+    file.close()
+    return listaPacientes
 
 def listadoPacientes():
-    try:
-        filePacientes = open(os.path.abspath("api/db/pacientes"), 'r')
-    except:
-        return jsonify("FILE_NOT_FOUND")
-    pacientes = filePacientes.read()
-    filePacientes.close()
-    return jsonify(pacientes.split(";"))
+    return jsonify(pacienteRecursivo(open(os.path.abspath("api/db/pacientes"), 'r'), []))
+    

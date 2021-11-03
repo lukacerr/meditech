@@ -22,15 +22,8 @@ Luka Cerrutti & Francisco Ezequiel González
 
 ### Formato de Pacientes:
 
-> ID, Nombre, Apellido, Edad, Dni
+> ID, Nombre, Apellido, Edad, DNI
 
 ### Formato de Turnos:
 
 > ID, DniPaciente (fk de pacientes), Fecha, Horario
-
-### A tener en cuenta durante la realización del trabajo:
-
-> https://docs.python.org/3/tutorial/inputoutput.html#methods-of-file-objects
-> https://docs.python.org/es/3/tutorial/errors.html
-> https://docs.python.org/es/3/tutorial/datastructures.html#using-lists-as-stacks
-> https://docs.python.org/es/3/tutorial/datastructures.html#using-lists-as-queues

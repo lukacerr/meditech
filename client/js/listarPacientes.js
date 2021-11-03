@@ -33,3 +33,42 @@ $.jpost('listarPacientes', session).then((res) => {
     `);
   });
 });
+
+const errMsg = $('#errMessage');
+const sucMsg = $('#sucMessage');
+$('#btnAdd').click(() => {
+  session.nombre = $('#inputNombre')[0]?.value;
+  session.apellido = $('#inputApellido')[0]?.value;
+  session.edad = $('#inputEdad')[0]?.value;
+  session.dni = $('#inputDni')[0]?.value;
+
+  if (session.nombre && session.apellido && session.edad && session.dni) {
+    errMsg.fadeOut(100);
+    sucMsg.fadeOut(100);
+
+    $.jpost('agregarPaciente', session).then((res) => {
+      if (res == 'SUCCESS') {
+        sucMsg.fadeIn(100);
+        tableBody.empty();
+
+        $.jpost('listarPacientes', session).then((res) => {
+          res.forEach((p) => {
+            const paciente = new Paciente(p.split(','));
+
+            tableBody.append(`
+              <tr>
+                <td>${paciente.id}</td>
+                <td>${paciente.nombre}</td>
+                <td>${paciente.apellido}</td>
+                <td>${paciente.edad}</td>
+                <td>${paciente.dni}</td>
+              </tr>
+            `);
+          });
+        });
+      } else {
+        errMsg.fadeIn(100);
+      }
+    });
+  }
+});

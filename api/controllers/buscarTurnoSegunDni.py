@@ -1,30 +1,23 @@
 import os
-from flask import jsonify
+from flask import json, jsonify
 
 os.system('cls')
 db_path = os.path.dirname(os.path.abspath(__file__))
 
-def buscarTurno(dni):
-    try:
-        fileTurnos = open(os.path.abspath("api/db/turnos"), 'r+')
-    except:
-        return jsonify("FILE_NOT_FOUND")
-    turnos = fileTurnos.read()
-    arrTurnos = turnos.split(";")
-    turnosFound = ""
-    encontrado = False
+def turnosRecursivo(file, listaTurnos, dni):
+    linea = file.readline()
+    if not linea: return "EMPTY_FILE"
+    
+    if linea.split(",")[1] == dni: listaTurnos.append(linea.replace(";",""))
+    turnosRecursivo(file, listaTurnos, dni)
+     
+    file.close()
+    return listaTurnos
 
-    for turno in arrTurnos:
-        if turno.split(",")[1] == dni:
-            encontrado = True
-            if turnosFound == "":
-                turnosFound += turno
-            else:
-                turnosFound += ";" + turno
-    
-    fileTurnos.close()
-    if encontrado: return jsonify(turnosFound)
-    return jsonify("NOT_FOUND")
-    
+def buscarTurno(dni):
+    turnos = turnosRecursivo(open(os.path.abspath("api/db/turnos"), 'r'), [], dni)
+    if len(turnos) == 0: return jsonify("NOT_FOUND")
+    # El front lo lee como string separado por ;
+    return jsonify(';'.join(turnos))
     
     

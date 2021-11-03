@@ -7,6 +7,13 @@ CheckLogin(session).then((x) => {
   } else GoToIndex();
 });
 
+$('#welcome').text(`Bienvenido, ${session.username}!`);
+
+$('#signOut').click((x) => {
+  location.href = './index.html';
+  DeleteSessionLogin();
+});
+
 // Fix animation
 $(function () {
   $('article').css('transition-duration', '0ms');

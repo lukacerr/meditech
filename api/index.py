@@ -2,7 +2,7 @@
 import os
 from flask import Flask, jsonify, request, url_for, redirect
 from flask_cors import CORS, cross_origin
-from controllers import altaPaciente, altaTurno, auth, buscarTurnoSegunDni, listarPacientes, listarTurnos, modificarPaciente, testing
+from controllers import altaPaciente, altaTurno, auth, buscarTurnoSegunDni, listarPacientes, listarTurnos, modificarPaciente, agregarTurno, agregarPaciente
 
 # Inicializaciones
 os.system('cls')
@@ -30,7 +30,6 @@ def RouteAltaPaciente():
     rq = request.get_json()
     validado = auth.autenticar(rq['username'], rq['password'])
     if validado == True:
-        rq = request.get_json()
         return altaPaciente.altaPaciente(rq['id'])
     return jsonify(False)
     
@@ -39,8 +38,7 @@ def RouteAltaPaciente():
 def RouteAltaTurno():
     rq = request.get_json()
     validado = auth.autenticar(rq['username'], rq['password'])
-    if validado == True: 
-        rq = request.get_json()
+    if validado == True:
         return altaTurno.altaTurno(rq['id'])
     return jsonify(False)
 
@@ -50,8 +48,17 @@ def RouteModificarPaciente():
     rq = request.get_json()
     validado = auth.autenticar(rq['username'], rq['password'])
     if validado == True:
-        rq = request.get_json() 
+        return modificarPaciente.modificarPaciente(rq['dni'], rq['nombre'], rq['apellido'], rq['edad'])
         # return editarPaciente(id)
+    return jsonify(False)
+
+@app.route('/obtenerPaciente', methods = ['POST', 'GET'])
+@cross_origin()
+def RouteObtenerPaciente():
+    rq = request.get_json()
+    validado = auth.autenticar(rq['username'], rq['password'])
+    if validado == True:
+        return modificarPaciente.recibirInformacion(rq['dni'])
     return jsonify(False)
 
 @app.route('/listarTurnos', methods = ['POST', 'GET'])
@@ -87,7 +94,7 @@ def RouteAgregarPaciente():
     rq = request.get_json()
     validado = auth.autenticar(rq['username'], rq['password'])
     if validado == True: 
-        return "hola"
+        return agregarPaciente.addPaciente(rq['nombre'], rq['apellido'], rq['edad'], rq['dni'])
     return jsonify(False)
 
 @app.route('/agregarTurno', methods = ['POST', 'GET'])
@@ -95,17 +102,8 @@ def RouteAgregarPaciente():
 def RouteAgregarTurno():
     rq = request.get_json()
     validado = auth.autenticar(rq['username'], rq['password'])
-    if validado == True: 
-        return "hola"
-    return jsonify(False)
-
-@app.route('/testing', methods = ['POST', 'GET'])
-@cross_origin()
-def RouteTesting():
-    rq = request.get_json()
-    validado = auth.autenticar(rq['username'], rq['password'])
-    if validado == True: 
-        return "hola"
+    if validado == True:
+        return agregarTurno.addTurno(rq['paciente'], rq['fecha'], rq['hora'])
     return jsonify(False)
 
 # API init

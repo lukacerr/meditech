@@ -27,7 +27,7 @@ $('#btnSearch').click(() => {
     errMsg.fadeOut(100);
 
     $.jpost('buscarTurnoSegunDni', session).then((res) => {
-      if (res != 'NOT_FOUND') {
+      if (res != 'NOT_FOUND' || !res) {
         res = res.split(';');
 
         tableHead.append(`

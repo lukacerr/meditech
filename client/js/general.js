@@ -31,6 +31,10 @@ function SaveSessionLogin(data) {
   sessionStorage.setItem('meditech-login', JSON.stringify(data));
 }
 
+function DeleteSessionLogin() {
+  sessionStorage.removeItem('meditech-login');
+}
+
 function GetSessionLogin() {
   return JSON.parse(sessionStorage.getItem('meditech-login'));
 }

@@ -14,32 +14,47 @@
 
     <link rel="stylesheet" href="css/aos.css" />
     <link rel="stylesheet" href="css/general.css" />
-    <link rel="stylesheet" href="css/altaTurno.css" />
-    <title>Meditech - Alta de Turnos</title>
+    <link rel="stylesheet" href="css/modificarPaciente.css" />
+    <title>Meditech - Modificar Paciente</title>
   </head>
   <body>
     <header class="title" data-aos="fade-down">
       <i class="fas fa-arrow-left" id="GoMenu"></i>
-      <i class="fas fa-file-signature"></i>
-      <h1>ALTA DE TURNOS</h1>
+      <i class="fas fa-edit"></i>
+      <h1>MODIFICAR PACIENTE</h1>
     </header>
 
     <section data-aos="fade-up">
       <div class="search">
         <div>
-          <h2>Ingrese ID de turno:</h2>
+          <h2>Ingrese documento de paciente:</h2>
           <input type="text" id="inputId" />
         </div>
-        <button id="btnSearch">Borrar turno</button>
+        <button id="btnSearch">Obtener información</button>
       </div>
-      <span id="sucMessage">El turno se ha borrado satisfactoriamente.</span>
-      <span id="errMessage">No se ha encontrado el turno.</span>
+      <span id="errMessage">No se ha encontrado el paciente.</span>
+    </section>
+
+    <section id="editSection" style="display: grid" data-aos="fade-up">
+      <div class="add">
+        <div>
+          <h2 id="editHeader">Editar paciente:</h2>
+          <input type="text" id="inputNombre" placeholder="Nombre/s..." />
+          <input type="text" id="inputApellido" placeholder="Apellido/s..." />
+          <input type="number" id="inputEdad" placeholder="Edad..." />
+        </div>
+        <button id="btnAdd">Editar</button>
+      </div>
+      <span id="sucMessage">El paciente se ha editado satisfactoriamente.</span>
+      <span id="errMessage2"
+        >Error de validación o desconocido. Revise los campos y vuelva a intentarlo.</span
+      >
     </section>
 
     <script src="https://kit.fontawesome.com/d6d2e5bf69.js" crossorigin="anonymous"></script>
     <script src="js/aos.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/general.js"></script>
-    <script src="js/altaTurno.js"></script>
+    <script src="js/modificarPaciente.js"></script>
   </body>
 </html>

@@ -3,24 +3,26 @@ from flask import jsonify, Response, abort
 
 bloqueoLogin = 0
 
+def usuarioRecursivo(file, username, password):
+    linea = file.readline()
+    if not linea:
+        file.close(); return False
+
+    if username in linea and password in linea: 
+        file.close(); return True
+
+    return usuarioRecursivo(file, username, password)
+
 def autenticar(username, password):
     global bloqueoLogin
     if bloqueoLogin < 3:
-        try:
-            fileUsuarios = open(os.path.abspath("api/db/usuarios"), 'r')
-        except:
-            return jsonify("FILE_NOT_FOUND")
-        usuarios = fileUsuarios.read()
-        fileUsuarios.close()
-        arrUsuarios = usuarios.split(";")
-
-        for usuario in arrUsuarios:
-            if usuario.split(",")[1] == username and usuario.split(",")[2] == password:
-                bloqueoLogin = 0
-                return True
-        
-        bloqueoLogin += 1
-        return False
+        login = usuarioRecursivo(open(os.path.abspath("api/db/usuarios"), 'r'), username, password)
+        if login == True:
+            bloqueoLogin = 0
+            return True
+        else:
+            bloqueoLogin += 1
+            return False
     
     return "ACCESS_DENIED"
     

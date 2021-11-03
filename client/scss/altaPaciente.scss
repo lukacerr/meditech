@@ -10,24 +10,9 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column nowrap;
 
-  table {
-    text-align: center;
-    thead {
-      th {
-        margin-bottom: 1em;
-      }
-    }
-    tbody {
-      tr {
-        td {
-          padding: 1em 2em 0;
-        }
-      }
-    }
-  }
-
-  .add {
+  .search {
     div {
       display: flex;
 
@@ -38,7 +23,6 @@ section {
       }
 
       input {
-        margin-inline: 1em;
         height: 2em;
       }
     }
